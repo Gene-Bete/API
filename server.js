@@ -26,7 +26,10 @@ app.get('/usuarios', async (request, response)  => {
           if(request.query){
             users = await prisma.user.findMany({
                 where: {
-                    name: request.query.name
+                    name: request.query.name,
+                    email: request.query.email,
+                    age: request.query.age
+
                 }
             })  
           }else{
@@ -54,7 +57,7 @@ app.delete('/usuarios/:id', async (request, response) => {
     
     await prisma.user.delete({
         where: {
-        
+
             id: request.params.id
         }
     })
